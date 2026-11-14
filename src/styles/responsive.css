@@ -1,0 +1,229 @@
+/* ---------- responsive exhibition ---------- */
+
+@media (max-width: 1100px) {
+  :root {
+    --head-h: 72px;
+  }
+  .chapter-rail {
+    right: 14px;
+  }
+  .chapter-rail li {
+    font-size: 0.56rem;
+  }
+  .scene-copy.portrait {
+    width: min(28rem, 42vw);
+  }
+}
+
+@media (max-width: 860px) {
+  .site-nav {
+    display: none;
+  }
+  .site-head {
+    justify-content: space-between;
+  }
+  .site-status {
+    font-size: 0.6rem;
+  }
+  .chapter-rail {
+    display: none;
+  }
+
+  .scene-copy.intro {
+    left: 20px;
+    right: 20px;
+    bottom: 100px;
+    max-width: none;
+  }
+
+  .scene-copy.intro h1 {
+    font-size: clamp(3rem, 15vw, 6rem);
+  }
+
+  .scene-copy.approach {
+    left: 20px;
+    right: 20px;
+    top: auto;
+    bottom: 18vh;
+    transform: none;
+    text-align: left;
+  }
+
+  .scene-copy.portrait {
+    left: 20px;
+    right: 20px;
+    top: auto;
+    bottom: calc(9vh + 24px);
+    transform: none;
+    width: auto;
+    max-width: none;
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line-dark);
+    text-shadow: 0 1px 24px rgba(0, 0, 0, 0.55);
+  }
+
+  .scene-copy.portrait h2 {
+    font-size: clamp(2.8rem, 12vw, 4.6rem);
+  }
+
+  .portrait-role {
+    font-size: 0.78rem;
+  }
+
+  .portrait-statement {
+    margin-top: 14px;
+    font-size: 1rem;
+    max-width: 36rem;
+  }
+
+  .portrait-meta {
+    margin-top: 16px;
+    font-size: 0.6rem;
+  }
+
+  .scene-copy.transform {
+    left: 20px;
+    right: 20px;
+    transform: none;
+    top: auto;
+    bottom: 22vh;
+    text-align: left;
+  }
+
+  .scene-copy.gallery {
+    padding: calc(var(--head-h) + 12px) 20px 18px;
+  }
+
+  .gallery-head h2 {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+  }
+
+  .gallery-head > p:last-child {
+    max-width: 26rem;
+  }
+
+  .project-index ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+    justify-content: stretch;
+    padding-top: 8px;
+  }
+
+  .project-index button {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line-dark);
+    font-size: 0.68rem;
+  }
+
+  .project-index button span {
+    order: 2;
+  }
+
+  .scroll-cue {
+    left: 20px;
+    bottom: 26px;
+  }
+
+  .stage-caption {
+    display: none;
+  }
+
+  .figure-note {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-status {
+    display: none;
+  }
+
+  .wordmark-text {
+    font-size: 1.15rem;
+  }
+
+  .scene-lede {
+    font-size: 0.88rem;
+    max-width: 20rem;
+  }
+
+  .gallery-head .eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .gallery-head > p:last-child {
+    display: none;
+  }
+
+  .project-index button {
+    padding: 7px 0;
+  }
+
+  .contact-mail {
+    font-size: 1.3rem;
+  }
+}
+
+/* short screens / laptops */
+
+@media (min-width: 861px) and (max-height: 720px) {
+  .scene-copy.intro {
+    bottom: 80px;
+  }
+  .scene-copy.intro h1 {
+    font-size: clamp(3rem, 7vw, 6.4rem);
+  }
+  .scene-copy.portrait {
+    width: min(28rem, 40vw);
+  }
+  .scene-copy.portrait h2 {
+    font-size: clamp(3rem, 6vw, 5rem);
+  }
+  .portrait-statement {
+    margin-top: 14px;
+    font-size: 1rem;
+  }
+  .scene-copy.gallery {
+    padding-bottom: 20px;
+  }
+  .project-index ol {
+    padding-top: 10px;
+  }
+}
+
+/* ---------- motion preferences ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-cue i::after {
+    transform: scaleX(1);
+  }
+}
+
+/* keyboard users get a clear hint that the canvases are also listed below */
+
+.project-index button:focus-visible {
+  outline-offset: 3px;
+}

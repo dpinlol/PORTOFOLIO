@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!-- Reference map (github.com/evavic44/portfolio-ideas): Dennis Snellenberg (index rows + pinned preview),
+     Olaolu Olawuyi (editorial rules), George Francis (restrained GSAP, one live element),
+     Robb Owen (typographic grid), Rauno Freiberg (precise micro-states). No layout copied. -->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+// One source of truth for motion: system preference, overridden by the on-page toggle.
+(function () {
+  var sys = false;
+  try { sys = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  var set = null;
+  try { set = localStorage.getItem('motion'); } catch (e) {}
+  if (set === 'off' || (set !== 'on' && sys)) document.documentElement.classList.add('motion-off');
+})();
+</script>
+<title>Your Name — Software Engineering Student</title>
+<meta name="description" content="Portfolio of a Software Engineering student. Selected work, skills, process, and contact." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Fixed rail — Olaolu: meta set vertically, out of the content flow -->
+<aside class="rail" aria-hidden="true">
+  <span class="rail-mark">YN</span>
+  <div class="rail-progress" aria-hidden="true"><span></span></div>
+  <p class="rail-role">Software Engineering · Class of 2026</p>
+  <p class="rail-status"><span class="dot"></span>Open to internships</p>
+</aside>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#hero">Your&nbsp;Name<span>/ portfolio</span></a>
+    <nav class="nav-links" id="navLinks" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="motion-toggle" id="motionToggle" type="button" title="Turn page motion on or off">Motion: on</button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1 Hero — Dennis: oversized name; portrait breaks the baseline -->
+<section class="hero" id="hero">
+  <div class="container">
+    <p class="kicker hero-anim">Portfolio · Selected work 2024—2026</p>
+
+    <div class="hero-grid">
+      <h1 class="hero-name hero-line">
+        <span class="line"><span class="line-inner">Your</span></span>
+        <span class="line hero-name-2"><span class="line-inner">Name<em>.</em></span></span>
+      </h1>
+
+      <figure class="portrait hero-anim">
+        <img src="images/photo.jpg" alt="Portrait of Your Name" onerror="this.style.display='none';this.parentElement.classList.add('is-empty')" />
+        <div class="portrait-empty"><b>Your portrait</b><span>4:5 · images/photo.jpg</span></div>
+        <div class="portrait-3d" id="hero3d" aria-hidden="true"></div>
+        <figcaption>Software Engineering<br>Frontend &amp; motion</figcaption>
+      </figure>
+
+      <div class="hero-side">
+        <p class="hero-role hero-anim">Frontend builds, motion, and the unglamorous parts — forms, storage, error states.</p>
+        <p class="hero-blurb hero-anim">I’m a Software Engineering student. I built my school’s aspiration and complaint system in Laravel, and a lost-and-found desk twice — once in plain PHP MVC, then as a Next.js port. This page is the short version of that work.</p>
+        <div class="hero-actions hero-anim">
+          <a class="btn btn-primary" href="#projects">Selected work <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+
+    <dl class="hero-ledger">
+      <div><dt>Selected work</dt><dd><span data-count="4" data-pad="2">04</span> projects</dd></div>
+      <div><dt>Stack</dt><dd>PHP · Laravel · Next.js · GSAP · Docker</dd></div>
+      <div><dt>Available</dt><dd>Nov 2026</dd></div>
+      <div><dt>Based in</dt><dd>Berlin, DE</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- Marquee — slow editorial ticker; CSS-only so it still reads without JS -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span>Open to internships</span><span>Frontend</span><span>Backend</span><span>Motion</span><span>PHP · Docker</span><span>Selected work 2024—2026</span>
+    </div>
+    <div class="ticker-group">
+      <span>Open to internships</span><span>Frontend</span><span>Backend</span><span>Motion</span><span>PHP · Docker</span><span>Selected work 2024—2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2 About -->
+<section class="section" id="about">
+  <div class="container">
+    <header class="sec-head">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div>
+        <h2>About</h2>
+        <p class="sec-note">The person behind the commits</p>
+      </div>
+    </header>
+
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p class="lede">I like the moment a static page starts answering back — a filter that works, a form that remembers you, an animation that explains instead of decorates.</p>
+        <p>Most of what I know comes from coursework and rebuilding things I use. Web development, databases, and algorithms at university; Git, accessibility, and GSAP on my own time. I keep projects small enough to finish and documented enough that someone else can open them.</p>
+        <p>Right now I’m looking for an internship where I can work on a real product with people who review code carefully.</p>
+      </div>
+
+      <aside class="about-side reveal">
+        <p class="label">At a glance</p>
+        <dl class="ledger">
+          <div><dt>Studying</dt><dd>B.Sc. Software Engineering, year 3</dd></div>
+          <div><dt>Learning</dt><dd>Node, SQL, testing</dd></div>
+          <div><dt>Tools</dt><dd>VS Code · Figma · GitHub</dd></div>
+          <div><dt>Languages</dt><dd>English · German</dd></div>
+        </dl>
+        <blockquote class="pullquote">
+          Clean work, fast learner, clear communication in class projects.
+          <cite>— Replace with a real quote from a teacher</cite>
+        </blockquote>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- 4 Skills — constellation map + fixed detail panel (George: one live element) -->
+<section class="section section-alt" id="skills">
+  <div class="container">
+    <header class="sec-head">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div>
+        <h2>Skills</h2>
+        <p class="sec-note">What I reach for, and how far I've got</p>
+      </div>
+    </header>
+
+    <div class="skills-grid">
+      <div class="skills-map reveal" id="skillsDiagram">
+        <svg class="map-lines" aria-hidden="true"><g></g></svg>
+        <button class="node" data-i="0" aria-pressed="false"><span class="node-par"><span class="node-name">HTML / CSS</span><span class="node-pct">90</span></span></button>
+        <button class="node" data-i="1" aria-pressed="false"><span class="node-par"><span class="node-name">JavaScript</span><span class="node-pct">82</span></span></button>
+        <button class="node" data-i="2" aria-pressed="false"><span class="node-par"><span class="node-name">GSAP</span><span class="node-pct">75</span></span></button>
+        <button class="node" data-i="3" aria-pressed="false"><span class="node-par"><span class="node-name">Python</span><span class="node-pct">78</span></span></button>
+        <button class="node" data-i="4" aria-pressed="false"><span class="node-par"><span class="node-name">Git / GitHub</span><span class="node-pct">85</span></span></button>
+        <button class="node" data-i="5" aria-pressed="false"><span class="node-par"><span class="node-name">Node / APIs</span><span class="node-pct">65</span></span></button>
+        <button class="node" data-i="6" aria-pressed="false"><span class="node-par"><span class="node-name">Docker</span><span class="node-pct">55</span></span></button>
+        <button class="node" data-i="7" aria-pressed="false"><span class="node-par"><span class="node-name">PHP</span><span class="node-pct">68</span></span></button>
+        <p class="map-hint">Hover or tap a node</p>
+      </div>
+
+      <div class="skill-panel reveal" id="skillDetail" role="status" aria-live="polite">
+        <p class="label" id="detailMeta">01 / 08 — Frontend</p>
+        <h3 id="detailName">HTML / CSS</h3>
+        <p class="skill-how" id="detailHow">Semantic markup and CSS grid for layouts that hold up from 320px to a projector. I test with the keyboard and check focus states before I call a page finished.</p>
+        <ul class="skill-tools" id="detailTools"><li>Semantic HTML</li><li>Grid</li><li>Custom properties</li></ul>
+        <p class="label used-label">Used in</p>
+        <ul class="used-list" id="detailUsed"><li>Pengaduan Sekolah</li><li>Lost &amp; Found</li></ul>
+        <div class="skill-level">
+          <span>Level</span>
+          <div class="ticks" id="detailTicks" aria-hidden="true"></div>
+          <b id="detailPct">90%</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="process">
+      <p class="label">How I work · idea → hand-in</p>
+      <ol>
+        <li><span>01</span><div><b>Understand</b>Read the brief twice, sketch the structure on paper.</div></li>
+        <li><span>02</span><div><b>Build</b>HTML and CSS first, then JS, then motion last.</div></li>
+        <li><span>03</span><div><b>Test</b>Mobile, desktop, keyboard, and a hard reload.</div></li>
+        <li><span>04</span><div><b>Hand in</b>README, comments, clean commit history.</div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Projects — Dennis: index rows + pinned preview -->
+<section class="section" id="projects">
+  <div class="container">
+    <header class="sec-head">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div>
+        <h2>Selected work</h2>
+        <p class="sec-note">Four projects · 2024—2026</p>
+      </div>
+    </header>
+
+    <div class="work">
+      <div class="work-list" id="workList" role="tablist" aria-label="Projects" aria-orientation="vertical">
+
+        <article class="work-row active" role="tab" aria-selected="true" aria-controls="preview-0" tabindex="0" data-idx="0">
+          <span class="w-idx">01</span>
+          <div class="w-main">
+            <h3>Pengaduan Sekolah</h3>
+            <p>Aspiration and complaint desk for my school: students post by category, admins triage with role checks, and a monthly report exports to PDF.</p>
+            <p class="w-stack">Laravel · Livewire · MySQL · DomPDF</p>
+          </div>
+          <span class="w-meta">Web app<br>2026</span>
+          <span class="w-arrow" aria-hidden="true">↗</span>
+          <div class="w-thumb" aria-hidden="true">
+            <div class="ui ui-tasks">
+              <div class="ui-bar"><span></span><span></span><span></span><em>pengaduan.sekolah</em></div>
+              <div class="ui-tasks-body">
+                <div class="ui-side"><b>Aspirasi</b><i></i><i></i><i></i><i></i></div>
+                <div class="ui-list">
+                  <div class="ui-task done"><i></i><span>Wifi kelas XI RPL</span><em>Setuju</em></div>
+                  <div class="ui-task current"><i></i><span>Antrean kantin</span><em>Pending</em></div>
+                  <div class="ui-task"><i></i><span>Proyektor lab</span><em>Baru</em></div>
+                  <div class="ui-add">+ Aspirasi baru</div>
+                </div>
+              </div>
+              <div class="ui-foot"><span>12 laporan bulan ini</span><b class="ui-progress"><i></i></b><span>PDF</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-row" role="tab" aria-selected="false" aria-controls="preview-1" tabindex="0" data-idx="1">
+          <span class="w-idx">02</span>
+          <div class="w-main">
+            <h3>Lost &amp; Found (L&amp;F)</h3>
+            <p>A lost-and-found desk in plain PHP MVC: students report lost or found items, an admin approves them, and claims move an item from open to claimed.</p>
+            <p class="w-stack">PHP · MVC pattern · MySQL · sessions</p>
+          </div>
+          <span class="w-meta">Web app<br>2025</span>
+          <span class="w-arrow" aria-hidden="true">↗</span>
+          <div class="w-thumb" aria-hidden="true">
+            <div class="ui ui-shop">
+              <div class="ui-bar"><span></span><span></span><span></span><em>lostandfound — all</em></div>
+              <div class="sh-head"><b>Lost &amp; Found</b><span>Open items (04)</span></div>
+              <div class="sh-grid">
+                <figure><i class="g1"></i><figcaption>Lost · Blue jacket<em>PENDING</em></figcaption></figure>
+                <figure><i class="g2"></i><figcaption>Found · Water bottle<em>APPROVED</em></figcaption></figure>
+                <figure><i class="g3"></i><figcaption>Lost · Physics workbook<em>PENDING</em></figcaption></figure>
+                <figure><i class="g4"></i><figcaption>Found · Keys, lanyard<em>CLAIMED</em></figcaption></figure>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-row" role="tab" aria-selected="false" aria-controls="preview-2" tabindex="0" data-idx="2">
+          <span class="w-idx">03</span>
+          <div class="w-main">
+            <h3>L&amp;F port — Next.js</h3>
+            <p>The same desk rebuilt for the web: Next.js on Upstash Redis, signed cookie sessions, server actions, and the old PHP URLs redirecting to their new routes.</p>
+            <p class="w-stack">Next.js · Upstash Redis · server actions</p>
+          </div>
+          <span class="w-meta">Web app<br>2026</span>
+          <span class="w-arrow" aria-hidden="true">↗</span>
+          <div class="w-thumb" aria-hidden="true">
+            <div class="ui ui-weather">
+              <div class="ui-bar"><span></span><span></span><span></span><em>lostandfound.app</em></div>
+              <div class="wx-head">
+                <div><span>Verification desk</span><b>03</b><em>claims awaiting review</em></div>
+                <i class="wx-sun" aria-hidden="true"></i>
+              </div>
+              <div class="wx-days">
+                <div><span>PENDING</span><b>07</b></div><div><span>APPROVED</span><b>12</b></div>
+                <div><span>REJECTED</span><b>02</b></div><div><span>CLAIMED</span><b>05</b></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-row" role="tab" aria-selected="false" aria-controls="preview-3" tabindex="0" data-idx="3">
+          <span class="w-idx">04</span>
+          <div class="w-main">
+            <h3>File organiser</h3>
+            <p>A Python CLI that sorts a messy folder by date or type, with a dry-run flag and an undo file.</p>
+            <p class="w-stack">Python · argparse · file I/O</p>
+          </div>
+          <span class="w-meta">CLI<br>2025</span>
+          <span class="w-arrow" aria-hidden="true">↗</span>
+          <div class="w-thumb" aria-hidden="true">
+            <div class="ui ui-term">
+              <div class="ui-bar"><span></span><span></span><span></span><em>zsh — organise</em></div>
+              <pre><code><b>$</b> organize --by date --dry-run
+  photos/IMG_2041.jpg  →  2025-04/
+  photos/IMG_2088.jpg  →  2025-05/
+  docs/notes.md        →  2025-05/
+<b>$</b> organize --by date
+  <em>12 files sorted in 0.3s</em></code></pre>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="work-preview" id="workPreview">
+        <div class="preview-stage">
+          <div class="preview-item active" role="tabpanel" id="preview-0" aria-label="Project 1 preview" data-idx="0">
+            <div class="ui ui-tasks ui-lg" aria-hidden="true">
+              <div class="ui-bar"><span></span><span></span><span></span><em>pengaduan.sekolah — admin</em></div>
+              <div class="ui-tasks-body">
+                <div class="ui-side"><b>Aspirasi</b><i></i><i></i><i></i><i></i></div>
+                <div class="ui-list">
+                  <div class="ui-task done"><i></i><span>Wifi kelas XI RPL</span><em>Setuju</em></div>
+                  <div class="ui-task current"><i></i><span>Antrean kantin</span><em>Pending</em></div>
+                  <div class="ui-task"><i></i><span>Proyektor lab</span><em>Baru</em></div>
+                  <div class="ui-task"><i></i><span>Toilet lantai 2</span><em>Baru</em></div>
+                  <div class="ui-add">+ Aspirasi baru</div>
+                </div>
+              </div>
+              <div class="ui-foot"><span>12 laporan bulan ini</span><b class="ui-progress"><i></i></b><span>Laporan PDF</span></div>
+            </div>
+          </div>
+          <div class="preview-item" role="tabpanel" id="preview-1" aria-label="Project 2 preview" data-idx="1">
+            <div class="ui ui-shop ui-lg" aria-hidden="true">
+              <div class="ui-bar"><span></span><span></span><span></span><em>lostandfound — all</em></div>
+              <div class="sh-head"><b>Lost &amp; Found</b><span>Open items (04)</span></div>
+              <div class="sh-filters"><span>All</span><span>Lost</span><span>Found</span><span>Claimed</span></div>
+              <div class="sh-grid">
+                <figure><i class="g1"></i><figcaption>Lost · Blue jacket<em>PENDING</em></figcaption></figure>
+                <figure><i class="g2"></i><figcaption>Found · Water bottle<em>APPROVED</em></figcaption></figure>
+                <figure><i class="g3"></i><figcaption>Lost · Physics workbook<em>PENDING</em></figcaption></figure>
+                <figure><i class="g4"></i><figcaption>Found · Keys, lanyard<em>CLAIMED</em></figcaption></figure>
+              </div>
+            </div>
+          </div>
+          <div class="preview-item" role="tabpanel" id="preview-2" aria-label="Project 3 preview" data-idx="2">
+            <div class="ui ui-weather ui-lg" aria-hidden="true">
+              <div class="ui-bar"><span></span><span></span><span></span><em>lostandfound.app — desk</em></div>
+              <div class="wx-head">
+                <div><span>Verification desk</span><b>03</b><em>claims awaiting review</em></div>
+                <i class="wx-sun" aria-hidden="true"></i>
+              </div>
+              <div class="wx-days">
+                <div><span>PENDING</span><b>07</b></div><div><span>APPROVED</span><b>12</b></div>
+                <div><span>REJECTED</span><b>02</b></div><div><span>CLAIMED</span><b>05</b></div>
+              </div>
+              <p class="wx-note">Old index.php URLs redirect to their new routes automatically.</p>
+            </div>
+          </div>
+          <div class="preview-item" role="tabpanel" id="preview-3" aria-label="Project 4 preview" data-idx="3">
+            <div class="ui ui-term ui-lg" aria-hidden="true">
+              <div class="ui-bar"><span></span><span></span><span></span><em>zsh — organise</em></div>
+              <pre><code><b>$</b> organize --by date --dry-run
+  photos/IMG_2041.jpg  →  2025-04/
+  photos/IMG_2088.jpg  →  2025-05/
+  docs/notes.md        →  2025-05/
+  archive/old.zip      →  2024-11/
+<b>$</b> organize --by date
+  <em>12 files sorted in 0.3s</em>
+<b>$</b> organize --undo
+  <em>restored from .organize-undo.json</em></code></pre>
+            </div>
+          </div>
+        </div>
+        <p class="preview-foot"><span id="previewIdx"><b id="previewNum">01</b> / 04</span><span id="previewName">Pengaduan Sekolah</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 Contact -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <header class="sec-head">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div>
+        <h2>Contact</h2>
+        <p class="sec-note">Open to internships, small builds, and test tasks</p>
+      </div>
+    </header>
+
+    <div class="contact-mail-row">
+      <a class="contact-mail" href="mailto:your@email.com">your@email.com</a>
+      <button class="copy-mail" id="copyMail" type="button">Copy address</button>
+    </div>
+    <p class="copy-note" id="copyNote" role="status" aria-live="polite"></p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>I answer within a day, and I’m happy to start with a small exercise before a longer commitment. Bring a brief, a broken page, or a half-finished idea.</p>
+        <dl class="ledger">
+          <div><dt>GitHub</dt><dd><a href="https://github.com/yourname">github.com/yourname</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://linkedin.com/in/yourname">linkedin.com/in/yourname</a></dd></div>
+          <div><dt>Availability</dt><dd><span data-count="2">2</span> projects · November 2026</dd></div>
+        </dl>
+        <p class="small-note">This form is a school demo. The mail link above is the real inbox.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <label>Your name<input type="text" name="name" placeholder="e.g. Alex" required /></label>
+        <label>Your email<input type="email" name="email" placeholder="alex@example.com" required /></label>
+        <label>Message<textarea name="message" rows="4" placeholder="What are you building?" required></textarea></label>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-note" id="formNote" role="status" aria-live="polite">School demo — nothing is sent yet.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>© 2026 Your Name — built by hand with HTML, CSS and GSAP.</p>
+    <p class="footer-refs">Refs: Dennis Snellenberg · Olaolu Olawuyi · George Francis · Robb Owen</p>
+    <a class="to-top" href="#hero">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
